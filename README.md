@@ -5,7 +5,7 @@
 # What is this
 A collection of Ansible Playbooks and Roles to roll out an ELK (Elasticsearch, Logstash, Kibana) Stack on two virtual Machines.
 
- The Logstash VM will connect to **Twitter** and collect all Tweets to a given Keywoard. The Access to the Kibana Web-UI is proxied through Nginx, secured which a *htpasswd*-Authentication.
+ The Logstash VM will connect to **Twitter** and collect all Tweets to a given Keyword. The Access to the Kibana Web-UI is proxied through Nginx, secured which a *htpasswd*-Authentication.
 
 This Demo is intended to run as a workflow from within Ansible Tower (or AWX).
 
