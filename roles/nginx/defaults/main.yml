@@ -1,0 +1,4 @@
+---
+nginx_install_packages:
+- nginx
+- python3-passlib

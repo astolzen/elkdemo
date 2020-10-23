@@ -1,0 +1,6 @@
+- name: restart_services
+  service:
+    name: "{{ item }}"
+    state: started
+    enabled: true
+  with_items: "{{ es_services }}"

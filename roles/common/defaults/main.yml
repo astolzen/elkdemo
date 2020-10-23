@@ -1,0 +1,3 @@
+---
+el_repo_key: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+jdk_rpm: java-11-openjdk-devel

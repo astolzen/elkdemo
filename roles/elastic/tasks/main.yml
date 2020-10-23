@@ -1,0 +1,12 @@
+- name: Install Packages
+  yum: 
+    name: "{{ es_install_packages }}"
+    state: present
+  notify: restart_services
+
+- name: Copy config file
+  copy: src=elasticsearch.yml dest=/etc/elasticsearch/elasticsearch.yml owner=root group=root mode=0644
+      
+- name: Copy Kibana config file
+  template: src=kibana.j2  dest=/etc/kibana/kibana.yml owner=root group=root mode=0644
+

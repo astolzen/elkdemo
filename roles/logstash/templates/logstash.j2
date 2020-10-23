@@ -1,0 +1,23 @@
+input {  
+    twitter {
+        consumer_key => "{{ app_key }}"
+        consumer_secret => "{{ app_secret }}"
+        oauth_token => "{{ token_key }}"
+        oauth_token_secret => "{{ token_secret }}"
+        keywords => ["{{ tw_keyword }}"]
+        full_tweet => true
+    }
+}
+
+filter { }
+
+output {
+    elasticsearch {
+      hosts => ["elastic:9200"]
+      index         => "twitter_elastic_example"
+      document_type => "tweets"
+      template      => "/etc/logstash/twitter_template.json"
+      template_name => "twitter_elastic_example"
+      template_overwrite => true
+  }
+}

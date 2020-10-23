@@ -1,0 +1,10 @@
+- name: Sending an e-mail 
+  mail:
+    host: "{{ mail_host }}"
+    port: "{{ mail_port }}"
+    username: "{{ mail_user }}"
+    password: "{{ mail_password }}" 
+    to: "{{ mail_to }}"
+    subject: "{{ mail_subject }}"
+    body: "{{ mail_body }}"
+  delegate_to: localhost

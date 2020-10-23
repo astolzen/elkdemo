@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  gather_facts: no
+
+  tasks: 
+  - name: Send Mail
+    include_role:
+      name: mail
+    vars:
+      mail_subject: "Your ELK Stack has been rolled out"
+      mail_body: "{{ lookup('template', 'elk_mail.j2') }}"
+

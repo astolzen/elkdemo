@@ -1,0 +1,13 @@
+- name: Import Elastic Key
+  rpm_key:
+    state: present
+    key: "{{ el_repo_key }}"
+
+- name: Copy elastic repo
+  copy: src=elastic.repo dest=/etc/yum.repos.d/elastic.repo owner=root group=root mode=0644
+
+- name: Install JDK
+  yum: 
+    name: "{{ jdk_rpm }}"
+    state: latest
+

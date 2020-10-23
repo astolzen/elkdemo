@@ -1,0 +1,38 @@
+- name: create a disk
+  gcp_compute_disk:
+    name: "{{ item }}-disk"
+    size_gb: "{{ gce_disksize }}"
+    source_image: "{{ gce_source }}"
+    zone: "{{ gce_zone }}"
+#    project: "{{ project_id }}"
+    auth_kind: serviceaccount
+#    service_account_file: "{{ credentials_file }}"
+    state: present
+  register: disk
+
+- name: create a instance
+  gcp_compute_instance:
+    name: "{{ item }}"
+    machine_type: "{{ gce_type }}"
+    disks:
+    - auto_delete: 'true'
+      boot: 'true'
+      source: "{{ disk }}"
+    network_interfaces:
+    - access_configs:
+      - name: External NAT
+        type: ONE_TO_ONE_NAT  
+    zone: "{{ gce_zone }}"
+#    project: "{{ project_id }}"
+    auth_kind: serviceaccount
+#    service_account_file: "{{ credentials_file }}"
+    state: present
+  register: instance
+
+
+- name: Add tags 
+  gce_tag:
+    instance_name: "{{ item }}"
+    tags: "{{ gce_network_tags }}"
+    state: present
+    

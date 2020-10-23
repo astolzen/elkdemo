@@ -1,0 +1,11 @@
+- name: Install Logstash
+  yum: name=logstash state=present
+
+- name: Copy Logstash config file
+  template: src=logstash.j2  dest=/etc/logstash/conf.d/twitter.conf owner=root group=root mode=0644
+
+- name: Copy Template
+  copy: src=twitter_template.json dest=/etc/logstash/twitter_template.json owner=root group=root mode=0644
+
+- name: Start Logastash Service
+  service: name=logstash state=restarted enabled=yes

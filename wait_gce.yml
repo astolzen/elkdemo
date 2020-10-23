@@ -1,0 +1,12 @@
+---
+- hosts: all
+  gather_facts: no
+
+  tasks:    
+  - name: Wait for SSH to come up
+    wait_for:
+      host: "{{ ansible_ssh_host }}"
+      port: 22
+      delay: 10
+      timeout: 120
+    delegate_to: localhost

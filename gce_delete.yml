@@ -1,0 +1,8 @@
+- name: delete an instance
+  gcp_compute_instance:
+    name: "{{ item }}"
+    machine_type: "{{ gce_type }}"
+    zone: "{{ gce_zone }}"
+    auth_kind: serviceaccount
+    state: absent
+    

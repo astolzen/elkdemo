@@ -1,0 +1,34 @@
+- name: Enable EPEL
+  yum: 
+    name: epel-release
+    state: present
+
+- name: Install Packages
+  yum: 
+    name: "{{ nginx_install_packages }}"
+    state: present
+  notify: restart_services
+
+- name: Copy config file
+  template: 
+    src: nginx.j2
+    dest: /etc/nginx/nginx.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart_services  
+
+- name: Create htpasswd
+  htpasswd:
+    path: /etc/nginx/.htpasswd
+    name: "{{ nginx_user }}"
+    password: "{{ nginx_passwd }}"
+    owner: nginx
+    mode: 0644
+  notify: restart_services  
+
+- name: Set httpd_can_network_connect flag 
+  seboolean:
+    name: httpd_can_network_connect
+    state: yes
+    persistent: yes

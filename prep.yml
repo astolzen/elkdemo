@@ -1,0 +1,29 @@
+---
+- hosts: all
+  remote_user: rhepdstower
+  become: yes
+
+  tasks:
+  - name: DDNS
+    include_role:
+      name: ddns
+
+  - name: Common Config
+    include_role:
+      name: common
+
+  - name: Config Elastic
+    include_role:
+      name: elastic
+    when: gce_name=="elastic"
+
+  - name: Config Nginx
+    include_role:
+      name: nginx
+    when: gce_name=="elastic"  
+  
+  - name: Config Logstash
+    include_role:
+      name: logstash
+    when: gce_name=="logstash"
+

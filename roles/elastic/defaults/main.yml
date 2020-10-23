@@ -1,0 +1,12 @@
+---
+es_install_packages:
+- elasticsearch-oss
+- kibana-oss
+
+es_services:
+- elasticsearch
+- kibana 
+
+
+
+

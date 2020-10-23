@@ -1,0 +1,7 @@
+- hosts: localhost
+  gather_facts: no
+
+  tasks:
+  - name: Delete GCE VMs
+    include_tasks: gce_delete.yml
+    loop: "{{ gce_machines }}"
