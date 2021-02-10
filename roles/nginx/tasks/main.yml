@@ -26,6 +26,11 @@
     owner: nginx
     mode: 0644
   notify: restart_services  
+  
+- name: Install Pyton Dependency for semanage
+  yum:
+    name: python3-libsemanage
+    state: latest
 
 - name: Set httpd_can_network_connect flag 
   seboolean:
