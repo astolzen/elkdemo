@@ -1,6 +1,6 @@
 # Ansible Tower full Application Rollout Demo with Elasticsearch, Logstash and Twitter
 
-*v0.9 - 10/23/20*
+*v0.91 - 2/10/21*
 
 # What is this
 A collection of Ansible Playbooks and Roles to roll out an ELK (Elasticsearch, Logstash, Kibana) Stack on two virtual Machines.
