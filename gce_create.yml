@@ -23,16 +23,11 @@
       - name: External NAT
         type: ONE_TO_ONE_NAT  
     zone: "{{ gce_zone }}"
+    tags:
+      items: "{{ gce_network_tags }}"
 #    project: "{{ project_id }}"
     auth_kind: serviceaccount
 #    service_account_file: "{{ credentials_file }}"
     state: present
-  register: instance
+#  register: instance
 
-
-- name: Add tags 
-  gce_tag:
-    instance_name: "{{ item }}"
-    tags: "{{ gce_network_tags }}"
-    state: present
-    
